@@ -1,0 +1,24 @@
+.code-preview .preview-button,
+.code-preview .close-button {
+  background-color: var(--slidev-theme-primary);
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.code-preview .full-code-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.code-preview .full-code-content {
+  background-color: var(--slidev-theme-background);
+  color: var(--slidev-theme-foreground);
+  border-radius: 4px;
+  padding: 1em;
+}
+
+.code-preview pre {
+  margin: 0;
+}
