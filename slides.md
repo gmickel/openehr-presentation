@@ -147,7 +147,7 @@ Addressing the challenges of modern healthcare IT
 layout: two-cols-header
 ---
 
-# OpenEHR vs Traditional EHR Systems
+# OpenEHR vs Traditional EHR Systems 🥊
 
 ::left::
 
@@ -171,7 +171,7 @@ layout: two-cols-header
 layout: two-cols-header
 ---
 
-# What isn't typically stored in OpenEHR
+# What isn't typically stored in OpenEHR 🚫
 
 While OpenEHR is designed to handle a wide range of clinical data, some types of information are usually managed in separate systems:
 
@@ -208,7 +208,7 @@ While OpenEHR is designed to handle a wide range of clinical data, some types of
 
 ---
 
-# Integration with Non-OpenEHR Systems
+# Integration with Non-OpenEHR Systems 🤝
 
 While OpenEHR focuses on clinical data, it can reference external resources:
 
@@ -235,7 +235,7 @@ This approach allows for:
 layout: two-cols-header
 ---
 
-# Main Vendors/Products
+# Main Vendors/Products 🏪
 
 ::left::
 
@@ -269,7 +269,7 @@ layout: two-cols-header
 layout: two-cols-header
 ---
 
-# Comparing Better and EHRbase
+# Comparing Better and EHRbase ⚖️
 
 ::left::
 
@@ -294,13 +294,13 @@ layout: two-cols-header
 
 ## layout: statement
 
-# The Reference Model (RM)
+# The Reference Model (RM) 🧱
 
 The foundation of OpenEHR architecture
 
 ---
 
-# Understanding the Reference Model
+# Understanding the Reference Model 💡
 * Defines the logical structures of health records
 * Ensures consistency across all OpenEHR systems
 * Provides a stable base for building archetypes and templates
@@ -319,7 +319,7 @@ The foundation of OpenEHR architecture
 layout: two-cols-header
 ---
 
-# RM: Data Structures
+# RM: Data Structures 🏗️
 
 ::left::
 
@@ -349,7 +349,7 @@ graph TD
 
 ---
 
-# RM: Data Types
+# RM: Data Types 🧩
 
 OpenEHR RM defines various data types to represent different kinds of clinical information:
 
@@ -369,7 +369,7 @@ OpenEHR RM defines various data types to represent different kinds of clinical i
 
 ---
 
-# Example: Blood Pressure in RM
+# Example: Blood Pressure in RM 🩺
 
 <ScrollableCode>
 
@@ -416,13 +416,13 @@ OpenEHR RM defines various data types to represent different kinds of clinical i
 layout: statement
 ---
 
-# Archetypes
+# Archetypes 🧬
 
 Reusable clinical concept definitions
 
 ---
 
-# Understanding Archetypes
+# Understanding Archetypes 🔍
 * Formal definitions of clinical concepts
 * Written in Archetype Definition Language (ADL)
 * Constraint-based approach to defining clinical content
@@ -441,7 +441,7 @@ Reusable clinical concept definitions
 
 ---
 
-# Anatomy of an Archetype
+# Anatomy of an Archetype 🔬
 
 <ScrollableCode>
 
@@ -553,7 +553,7 @@ ontology
 
 ---
 
-# Key Components of an Archetype
+# Key Components of an Archetype 🗝️
 
 <v-clicks>
 
@@ -568,7 +568,7 @@ ontology
 
 ---
 
-# Archetype Modeling Tools
+# Archetype Modeling Tools 🛠️
 
 There are several tools available for creating and managing archetypes:
 
@@ -586,13 +586,13 @@ There are several tools available for creating and managing archetypes:
 layout: statement
 ---
 
-# Templates
+# Templates 📄
 
 Combining archetypes for specific use cases
 
 ---
 
-# Understanding Templates
+# Understanding Templates 🧠
 * Combine and constrain archetypes for specific use cases
 * Define the structure of data entry forms or documents
 * Allow for local customization while maintaining interoperability
@@ -610,7 +610,7 @@ Combining archetypes for specific use cases
 
 ---
 
-# Template Structure
+# Template Structure 🏗️
 
 ```mermaid
 graph TD
@@ -625,7 +625,7 @@ graph TD
 
 ---
 
-# Template Example: Vital Signs
+# Template Example: Vital Signs 📊
 
 <ScrollableCode>
 
@@ -1591,7 +1591,7 @@ export default VitalSignsForm;
 
 ---
 
-# Benefits of Web Templates for Web Application Development
+# Benefits of Web Templates for Web Application Development 🌐
 
 <v-clicks>
 
@@ -1610,7 +1610,7 @@ export default VitalSignsForm;
 layout: statement
 ---
 
-# Flat Format vs. Non-Flat Format
+# Flat Format 🥞 vs. Non-Flat Format 🌳
 
 Balancing Simplicity and Richness in OpenEHR Data
 
@@ -1806,7 +1806,7 @@ console.log(flatData);
 layout: statement
 ---
 
-# REST API Interaction
+# REST API Interaction 🔌
 
 Connecting Frontend to OpenEHR Backend
 
@@ -1930,7 +1930,7 @@ try {
 layout: statement
 ---
 
-# AQL (Archetype Query Language)
+# AQL (Archetype Query Language) 🔍
 
 Querying OpenEHR Data
 
@@ -2152,7 +2152,7 @@ try {
 layout: statement
 ---
 
-# Best Practices and Common Pitfalls (so far)
+# Best Practices ✅ and Common Pitfalls ❗ (so far)
 
 Navigating the OpenEHR Landscape
 
@@ -2299,7 +2299,7 @@ try {
 layout: statement
 ---
 
-# Hands-on Examples
+# Hands-on Examples 💻
 
 Putting OpenEHR into Practice
 
@@ -2497,7 +2497,7 @@ export default PatientVitalSigns;
 
 ---
 
-# Recap and Key Takeaways
+# Recap and Key Takeaways 🎓
 
 <v-clicks>
 
@@ -2514,6 +2514,6 @@ export default PatientVitalSigns;
 
 ---
 
-# Thank You!
+# 🙏 Thank You!
 
 Questions? Let's discuss!
