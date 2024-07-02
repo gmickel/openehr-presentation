@@ -13766,7 +13766,7 @@ This approach in the "real world"
 
 <!-- show /dos.png here -->
 
-<img src="/dos.png" style="display: block; margin: 0 auto; " />
+<img src="/doss.png" style="display: block; margin: 0 auto; " />
 
 ---
 
