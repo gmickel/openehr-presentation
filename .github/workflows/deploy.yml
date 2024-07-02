@@ -26,31 +26,17 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8 # or whatever version you prefer
-
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build
-        env:
-          NODE_ENV: production
-        run: |
-          export NODE_ENV=production
-          pnpm run build -- --base /${{ github.event.repository.name }}/
-
-      - name: Check dist contents and environment
-        run: |
-          echo "NODE_ENV: $NODE_ENV"
-          ls -R dist
+        run: npm run build -- --base /${{github.event.repository.name}}/
 
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: dist
 
       - name: Deploy
         id: deployment
