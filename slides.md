@@ -1,12 +1,12 @@
 ---
-theme: dracula
-background: https://source.unsplash.com/collection/94734566/1920x1080
+theme: default
+background: https://cdn.midjourney.com/5a05c8e9-1f0e-48c0-a450-6966b3fb2fc7/0_3.png
 class: text-center
 highlighter: shiki
 lineNumbers: false
 info: |
   ## OpenEHR Intro Session
-  A comprehensive guide leading our OpenEHR integration efforts
+  A comprehensive guide for those leading our OpenEHR integration efforts
 drawings:
   persist: false
 transition: slide-left
@@ -17,7 +17,7 @@ title: OpenEHR Intro Session
 
 # OpenEHR Intro Session
 
-A comprehensive guide leading our OpenEHR integration efforts
+A comprehensive guide for those leading our OpenEHR integration efforts
 
 <img src="/logo.png" style="display: block; margin: 0 auto; " />
 
@@ -75,6 +75,16 @@ Revolutionizing healthcare data management
 * Supports semantic interoperability
 
 </v-click>
+
+---
+layout: statement
+---
+
+# Wikipedia Definition 📖
+
+openEHR is an open standard specification in health informatics that describes the management and storage, retrieval and exchange of health data in electronic health records (EHRs). In openEHR, all health data for a person is stored in a "one lifetime", vendor-independent, person-centred EHR.
+
+The openEHR specifications include an EHR Extract specification but are otherwise not primarily concerned with the exchange of data between EHR-systems as this is the focus of other standards such as EN 13606 and HL7 (Health Level Seven -> z. B. FHIR).
 
 ---
 layout: two-cols-header
@@ -290,9 +300,11 @@ layout: two-cols-header
 * Suitable for research and custom implementations
 * Vendors such as VitaGroup offer professional services and products based on EHRbase
 
-## <!-- shit documentation -->
+<!-- shit documentation -->
 
-## layout: statement
+---
+layout: statement
+---
 
 # The Reference Model (RM) 🧱
 
@@ -2176,6 +2188,38 @@ Navigating the OpenEHR Landscape
 </v-clicks>
 
 ---
+layout: two-cols-header
+---
+
+# Versioning and Concurrency in OpenEHR
+
+::left::
+
+## Versioning
+
+* Each update creates a new version
+* Use `If-Match` header for updates
+* Retrieve version history via API
+
+## Concurrency
+
+* Optimistic locking
+* Version-aware updates
+* Conflict resolution strategies
+
+::right::
+
+<v-click>
+
+## Best Practices
+
+* Always check and update based on latest version
+* Implement retry logic for conflict resolution
+* Use transactions for complex updates
+
+</v-click>
+
+---
 
 # Common Pitfalls in OpenEHR Development
 
@@ -2511,6 +2555,18 @@ export default PatientVitalSigns;
 08. Hands-on examples demonstrate practical application of OpenEHR in web development
 
 </v-clicks>
+
+---
+
+# Engaging with the OpenEHR Community 🌐
+
+## Community Resources
+
+* [OpenEHR.org](https://www.openehr.org)
+* [OpenEHR Discourse Forum](https://discourse.openehr.org)
+* [OpenEHR GitHub](https://github.com/openEHR)
+* [OpenEHR Twitter](https://twitter.com/openehr)
+* [EHRBase GitHub](github.com/ehrbase/ehrbase)
 
 ---
 
