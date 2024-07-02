@@ -26,8 +26,13 @@ jobs:
         with:
           node-version: 'lts/*'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8 # or whatever version you prefer
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build
         run: pnpm run build -- --base /${{github.event.repository.name}}/
