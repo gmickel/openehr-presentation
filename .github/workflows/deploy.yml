@@ -35,16 +35,22 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm run build -- --base /${{ github.event.repository.name }}/
+        env:
+          NODE_ENV: production
+        run: |
+          export NODE_ENV=production
+          pnpm run build -- --base /${{ github.event.repository.name }}/
 
-      - name: Check dist contents
-        run: ls -R dist
+      - name: Check dist contents and environment
+        run: |
+          echo "NODE_ENV: $NODE_ENV"
+          ls -R dist
 
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist # Ensure we're using the dist folder
+          path: ./dist
 
       - name: Deploy
         id: deployment
