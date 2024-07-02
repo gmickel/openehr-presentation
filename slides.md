@@ -251,19 +251,23 @@ layout: two-cols-header
 
 ## Better
 
+Add Logo
+
 * Offers Better Platform
 * Provides tools for building healthcare apps and integrating systems
 * [Better Platform](https://www.better.care/platform)
 
 <v-click>
 
-**Note**: We have a central Better instance available for testing purposes.
+**Note**: We have a central Better instance available for testing purposes. <- Add URL
 
 </v-click>
 
 ::right::
 
 ## EHRbase
+
+Add Logo
 
 * Open-source OpenEHR clinical data repository
 * Implements latest OpenEHR specifications
@@ -14430,6 +14434,8 @@ try {
 ---
 
 # Performance Optimization Strategies
+
+FIXME
 
 <v-clicks>
 

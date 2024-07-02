@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build -- --base /${{github.event.repository.name}}/
+        run: pnpm run build -- --base /${{github.event.repository.name}}/
 
       - uses: actions/configure-pages@v4
 
