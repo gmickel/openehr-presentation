@@ -13764,13 +13764,15 @@ This approach in the "real world"
 
 # What works for something standardized such as the MedScores project...
 
-Screenshot here...
+<!-- show /dos.png here -->
+
+<img src="/dos.png" style="display: block; margin: 0 auto; " />
 
 ---
 
 # Is as nightmare for clinical forms such as this one...
 
-Screenshot here...
+<img src="/hauttest.png" style="display: block; margin: 0 auto; " />
 
 ---
 layout: statement
@@ -13784,24 +13786,27 @@ Balancing Simplicity and Richness in OpenEHR Data
 layout: two-cols-header
 ---
 
-# Understanding Flat vs. Non-Flat Formats
+# OpenEHR API Interaction Formats
 
 ::left::
 
-## Flat Format
+## Simplified Format
 
-* Simplified, denormalized representation
-* Key-value pairs
-* Easier for data entry and querying
-* Loses some context and relationships
+* Flattened structure for API calls
+* Easier for quick implementations
+* Simpler for those new to OpenEHR
 
 ::right::
 
-## Non-Flat Format
+## Full OpenEHR Structure
 
-* Full, hierarchical OpenEHR structure
-* Preserves all context and relationships
-* More complex to work with
+* Complete hierarchical format in API calls
+* Directly reflects OpenEHR archetypes
+* Familiar to OpenEHR experts
+
+::bottom::
+
+**Important:** Both formats result in the same stored data. The choice only affects the structure of API requests/responses, not the underlying data capabilities or interoperability.
 * Retains all metadata and semantic meaning
 
 ---
@@ -13914,28 +13919,6 @@ layout: two-cols-header
 ```
 
 </ScrollableCode>
-
----
-
-# Choosing Between Flat and Non-Flat Formats
-
-<v-clicks>
-
-## Use Flat Format When:
-
-* Performing simple data entry
-* Executing basic queries
-* Integrating with systems that prefer key-value pairs
-* Optimizing for storage or transmission efficiency
-
-## Use Non-Flat Format When:
-
-* Preserving full clinical context is crucial
-* Implementing complex clinical decision support
-* Ensuring maximum interoperability with other OpenEHR systems
-* Performing advanced querying or data analysis
-
-</v-clicks>
 
 ---
 
