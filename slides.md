@@ -649,6 +649,93 @@ graph TD
 
 ---
 
+# Constraints and Validations in OpenEHR 🔒
+
+* Archetypes define basic constraints:
+  + Data types (e.g., text, number, date)
+  + Value ranges (e.g., 0-100 for percentages)
+  + Cardinality (e.g., 0..1 for optional, 1..* for mandatory multiple)
+* Templates can further constrain archetypes:
+  + Narrowing value ranges
+  + Specifying mandatory fields
+* Operational Templates resolve all constraints
+* Validation occurs at multiple levels:
+  + User interface data entry
+  + Data storage in EHR system
+  + Data queries and analyses
+
+<!--
+<!--
+* Erklärung der Rolle von Constraints und Validierungen in OpenEHR:
+  + Archetypes definieren grundlegende Einschränkungen (z. B. Blutdruck 0-300 mmHg)
+  + Templates verfeinern diese weiter (z. B. Erwachsenen-Blutdruck 60-200 mmHg)
+  + Operational Templates lösen alle Constraints auf:
+    - Erzeugen finale, konkrete Regeln zur direkten Systemimplementierung
+    - Beispiel: Operational Template enthält den endgültigen Bereich 60-200 mmHg
+
+* Mehrschichtige Validierung erläutern:
+  + Benutzereingabe: Formulare basierend auf Operational Templates
+  + Datenspeicherung: EHR-System prüft gegen aufgelöste Constraints
+  + Datenabfragen: AQL nutzt Constraints für effiziente Abfragen
+
+* Vorteile hervorheben:
+  + Datenqualität: Nur valide Daten werden gespeichert
+  + Interoperabilität: Einheitliche Interpretation von Daten across Systeme
+  + Präzise Abfragen: Constraints ermöglichen gezieltere AQL-Queries
+
+* Einfluss von Constraints auf AQL-Abfragen erklären:
+  + Queryformulierung: Constraints bestimmen gültige Pfadausdrücke
+  + Optimierung: Nutzung von Constraints für effizientere WHERE-Klauseln
+  + Ergebnisinterpretation: Verständnis der möglichen Wertebereiche
+  + Datenvalidierung: Queries operieren auf konsistenten, validen Daten
+  + Komplexe Abfragen: z. B. Nutzung von Terminologie-Bindungen
+
+* Praktisches Beispiel für AQL mit Constraints:
+  + Query zur Findung potenziell fehlerhafter Blutdruckeinträge
+  + Zeigt, wie Constraint-Wissen in Abfragen einfließt
+
+* Wichtigkeit für OpenEHR-Gesamtarchitektur betonen:
+  + Constraints als Schlüssel für zuverlässige, interoperable Gesundheitsdaten
+  + Grundlage für fortgeschrittene Analysen und Entscheidungsunterstützung
+-->
+-->
+
+<!--
+* Erklärung der Rolle von Constraints und Validierungen in OpenEHR:
+  + Archetypes definieren grundlegende Einschränkungen (z. B. Blutdruck 0-300 mmHg)
+  + Templates verfeinern diese weiter (z. B. Erwachsenen-Blutdruck 60-200 mmHg)
+  + Operational Templates lösen alle Constraints auf:
+    - Erzeugen finale, konkrete Regeln zur direkten Systemimplementierung
+    - Beispiel: Operational Template enthält den endgültigen Bereich 60-200 mmHg
+
+* Mehrschichtige Validierung erläutern:
+  + Benutzereingabe: Formulare basierend auf Operational Templates
+  + Datenspeicherung: EHR-System prüft gegen aufgelöste Constraints
+  + Datenabfragen: AQL nutzt Constraints für effiziente Abfragen
+
+* Vorteile hervorheben:
+  + Datenqualität: Nur valide Daten werden gespeichert
+  + Interoperabilität: Einheitliche Interpretation von Daten across Systeme
+  + Präzise Abfragen: Constraints ermöglichen gezieltere AQL-Queries
+
+* Einfluss von Constraints auf AQL-Abfragen erklären:
+  + Queryformulierung: Constraints bestimmen gültige Pfadausdrücke
+  + Optimierung: Nutzung von Constraints für effizientere WHERE-Klauseln
+  + Ergebnisinterpretation: Verständnis der möglichen Wertebereiche
+  + Datenvalidierung: Queries operieren auf konsistenten, validen Daten
+  + Komplexe Abfragen: z. B. Nutzung von Terminologie-Bindungen
+
+* Praktisches Beispiel für AQL mit Constraints:
+  + Query zur Findung potenziell fehlerhafter Blutdruckeinträge
+  + Zeigt, wie Constraint-Wissen in Abfragen einfließt
+
+* Wichtigkeit für OpenEHR-Gesamtarchitektur betonen:
+  + Constraints als Schlüssel für zuverlässige, interoperable Gesundheitsdaten
+  + Grundlage für fortgeschrittene Analysen und Entscheidungsunterstützung
+-->
+
+---
+
 # Template Example: DOSS 🧮
 
 <ScrollableCode>
@@ -13779,6 +13866,94 @@ This approach in the "real world"
 <img src="/hauttest.png" style="display: block; margin: 0 auto; " />
 
 ---
+
+# Configuration + Convention 🤔
+
+Dynamic form generation from WebTemplates only works to a degree, it doesn't tell us:
+
+* Which values are meant to be entered by users and which are provided by other sources
+* Which values are meant to be calculated based on other values
+* How to handle complex interactions between fields
+* How to save semi-unstructured data from other sources (FEEDER_AUDIT)
+* The shape of the composition (can be generated)
+
+<ScrollableCode style="height: 230px">
+
+```typescript {15, 53-54}
+import jp from 'jsonpath';
+import {
+  AnswerItem,
+  OpenEHRTemplate,
+  ScoreAnswer,
+  ScoreForm,
+  ScoreQuestion,
+  TemplateConfig,
+  TreeNode,
+} from '../types';
+export function parseOpenEHRTemplate(
+  template: OpenEHRTemplate,
+  config: TemplateConfig
+): ScoreForm {
+  const content = jp.query(template, config.contentPath)[0] as TreeNode;
+
+  if (!content) {
+    throw new Error(`Could not find content at path: ${config.contentPath}`);
+  }
+
+  const questions: ScoreQuestion[] = jp
+    .query(content, config.questionsPath)
+    .filter((node: TreeNode) => node.rmType === 'ELEMENT')
+    .map((question: TreeNode) => {
+      const valueNode = jp.query(
+        question,
+        config.answerValuePath
+      )[0] as TreeNode;
+      let answers: ScoreAnswer[] = [];
+
+      if (valueNode?.inputs?.[0]?.list) {
+        answers = valueNode.inputs[0].list.map((item: AnswerItem) => ({
+          value: item.value,
+          label: item.label,
+          description:
+            item.localizedDescriptions?.en ?? item.localizedLabels?.en ?? '',
+          ordinal: item.ordinal ?? 0,
+        }));
+      }
+
+      return {
+        id: question.id,
+        name: question.name,
+        description:
+          question.localizedDescriptions?.en ||
+          question.localizedDescriptions?.de ||
+          '',
+        answers,
+        answer: null,
+      };
+    });
+
+  const scoreElement = jp.query(content, config.scorePath)[0] as TreeNode;
+  const commentElement = jp.query(content, config.commentPath)[0] as TreeNode;
+
+  return {
+    id: template.templateId,
+    name: content.name,
+    isBaseline: false,
+    questions,
+    score: scoreElement
+      ? { id: scoreElement.id, name: scoreElement.name, answer: null }
+      : { id: '', name: '', answer: null },
+    comment: commentElement
+      ? { id: commentElement.id, name: commentElement.name, answer: null }
+      : { id: '', name: '', answer: null },
+  };
+}
+
+```
+
+</ScrollableCode>
+
+---
 layout: statement
 ---
 
@@ -14698,6 +14873,14 @@ export default PatientVitalSigns;
 08. Hands-on examples demonstrate practical application of OpenEHR in web development
 
 </v-clicks>
+
+---
+layout: intro
+---
+
+# Want to test your knowledge?
+
+https://gmickel.github.io/openehr-quest/
 
 ---
 
