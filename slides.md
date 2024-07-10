@@ -10,8 +10,7 @@ info: |
 drawings:
   persist: false
 transition: slide-left
-globalComponents:
-  + ./global-components.ts
+globalComponents: + ./global-components.ts
 title: OpenEHR Intro Session
 ---
 
@@ -20,6 +19,12 @@ title: OpenEHR Intro Session
 A comprehensive guide for those leading our OpenEHR integration efforts
 
 <img src="/logo.png" style="display: block; margin: 0 auto; " />
+
+<!--
+* Willkommen zur OpenEHR-Einführung
+* Zielgruppe: Senior Web-Entwickler in unserem Unternehmen, die für die Integration von OpenEHR zuständig sind
+* Ziel: Verständnis von OpenEHR und dessen Anwendung in unseren Projekten
+-->
 
 ---
 layout: two-cols-header
@@ -49,18 +54,29 @@ layout: two-cols-header
 15. Best practices and common pitfalls
 16. Hands-on examples
 
+<!--
+* Überblick über die zu behandelnden Themen
+* Von Grundlagen bis zu praktischen Beispielen mit Fokus auf "wie verwenden wir das überhaupt??"
+* Hinweis auf Pausen zwischen den Hauptabschnitten
+* Fragen kann man in den Chat schreiben, dann behandeln wir sie am Schluss oder ad-hoc
+-->
+
 ---
-layout: intro
+layout: cover
 ---
 
 # Introduction to OpenEHR 🚀
 
-Revolutionizing healthcare data management
+<img src="/confused.png" style="display: block; margin: 0 auto; height: 350px" />
+
+<!--
+Die letzten Monate...
+-->
 
 ---
 
 # What is OpenEHR? 🤔
-* An open standard specification for health data storage and exchange
+* An open standard specification for health data management and storage
 * Developed by the OpenEHR Foundation
 * Aims to improve the quality of healthcare through better use of information
 * Separates clinical knowledge from technical implementation
@@ -72,19 +88,53 @@ Revolutionizing healthcare data management
 * Two-level modeling approach
 * Archetype-based design
 * Vendor-neutral
-* Supports semantic interoperability
+* Supports semantic interoperability within OpenEHR systems
+* Complements data exchange standards like HL7 FHIR
 
 </v-click>
+
+<!--
+* OpenEHR ist primär ein Standard für Datenverwaltung und -speicherung, nicht hauptsächlich für den Datenaustausch
+* Fokus liegt auf der Strukturierung und Modellierung klinischer Informationen
+* Ermöglicht nahtlosen Datenaustausch innerhalb von OpenEHR-basierten Systemen
+* Für systemübergreifenden Austausch oft in Kombination mit anderen Standards wie HL7 FHIR verwendet
+* Zwei-Ebenen-Modellierung trennt klinisches Wissen (Archetypes) von technischer Implementierung (Reference Model)
+* Herstellerneutral: Vermeidet Vendor Lock-in, ermöglicht Flexibilität in der Systemwahl
+* Semantische Interoperabilität: Systeme können Bedeutung der Daten verstehen, aber primär innerhalb der OpenEHR-Welt
+-->
 
 ---
 layout: statement
 ---
 
-# Wikipedia Definition 📖
+# OpenEHR: Clarifying its Role 📖
 
-openEHR is an open standard specification in health informatics that describes the management and storage, retrieval and exchange of health data in electronic health records (EHRs). In openEHR, all health data for a person is stored in a "one lifetime", vendor-independent, person-centred EHR.
+> OpenEHR is an open standard specification in health informatics that describes the management, storage, and retrieval of health data in electronic health records (EHRs).
 
-The openEHR specifications include an EHR Extract specification but are otherwise not primarily concerned with the exchange of data between EHR-systems as this is the focus of other standards such as EN 13606 and HL7 (Health Level Seven -> z. B. FHIR).
+* Focuses on "one lifetime", vendor-independent, person-centered EHR
+* Includes EHR Extract specification for limited data exchange
+* Not primarily focused on inter-system data exchange
+
+<v-click>
+
+## Complementary Standards for Data Exchange:
+
+* EN 13606
+* HL7 (e.g., FHIR)
+
+</v-click>
+
+<!--
+* OpenEHR konzentriert sich auf Datenverwaltung, -speicherung und -abruf innerhalb eines Systems
+* "One lifetime" EHR: Alle Gesundheitsdaten einer Person in einer einzigen, lebenslangen Akte
+* Herstellerunabhängig: Flexibilität bei der Systemwahl und -implementierung
+* EHR Extract Spezifikation ermöglicht begrenzten Datenaustausch, ist aber nicht Hauptfokus
+* Für umfassenden systemübergreifenden Datenaustausch werden ergänzende Standards verwendet:
+  + EN 13606: Europäischer Standard für EHR-Kommunikation
+  + HL7 FHIR: Weit verbreiteter Standard für Gesundheitsdatenaustausch
+* In der Praxis: OpenEHR oft für interne Datenmodellierung, FHIR für externe Kommunikation
+* Wichtig: OpenEHR und Austauschstandards ergänzen sich, konkurrieren nicht
+-->
 
 ---
 layout: two-cols-header
@@ -113,6 +163,13 @@ graph TD
     F --> J[Composition, Section, etc.]
 ```
 
+<!--
+* Hauptkomponenten:
+  01. Referenzmodell: Grundlegende Datentypen und Strukturen
+  02. Archetypes: Definition klinischer Konzepte
+  03. Templates: Kombination von Archetypes für spezifische Anwendungsfälle
+-->
+
 ---
 layout: statement
 ---
@@ -120,6 +177,14 @@ layout: statement
 # Why OpenEHR? 🎯
 
 Addressing the challenges of modern healthcare IT
+
+<!--
+Jetzt kommt der Marketing-Teil
+
+* Adressiert Herausforderungen moderner Gesundheits-IT
+* Ermöglicht standardisierte, interoperable Gesundheitsdaten
+* Bietet Flexibilität für sich ändernde medizinische Anforderungen
+-->
 
 ---
 
@@ -138,6 +203,17 @@ Addressing the challenges of modern healthcare IT
 
 </v-clicks>
 
+<!--
+* Standardisierung über Systeme und Länder hinweg, nb. nicht Templates
+* Interoperabilität zwischen verschiedenen Gesundheits-IT-Systemen
+* Zukunftssicherheit klinischer Daten
+* Kliniker-geführte Entwicklung von Datenmodellen
+* Flexibilität für sich änderndes medizinisches Wissen
+* Semantische Abfragemöglichkeiten
+* Reduzierte Herstellerabhängigkeit
+* Verbesserte Datenqualität und -konsistenz
+-->
+
 ---
 
 # Drawbacks of OpenEHR 👎
@@ -152,6 +228,15 @@ Addressing the challenges of modern healthcare IT
 * <span v-mark>**Model-driven development** may not suit all projects</span>
 
 </v-clicks>
+
+<!--
+* Komplexität des Modellierungsansatzes
+* Steile Lernkurve für Entwickler
+* Begrenzte Tools für Archetyp-Entwicklung
+* Integrationsprobleme mit bestehenden Systemen
+* Ressourcenintensive Implementierung
+* Modellgetriebener Ansatz passt nicht zu allen Projekten, n.b. runtime
+-->
 
 ---
 layout: two-cols-header
@@ -177,6 +262,18 @@ layout: two-cols-header
 * Vendor-neutral standard
 * Adaptable to evolving healthcare needs
 
+<!--
+* Traditionelle Systeme:
+  + Starre Datenstrukturen
+  + Begrenzte Erweiterbarkeit
+  + Herstellerspezifische Implementierungen
+* OpenEHR:
+  + Flexible, archetyp-basierte Modelle
+  + Leicht erweiterbar
+  + Herstellerneutraler Standard
+  + Anpassbar an sich ändernde Anforderungen
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -189,15 +286,17 @@ While OpenEHR is designed to handle a wide range of clinical data, some types of
 
 <v-clicks>
 
+* **Non-clinical operational data**:
+  + Demographic data
+  + Hospital bed availability
+  + Inventory management
+  + Equipment maintenance logs
 * **Administrative data**:
   + Billing information
   + Staff schedules
   + Patient appointments
 * **Authentication and access control**:
   + User accounts and permissions
-* **Raw imaging data**:
-  + DICOM files
-  + Large medical image datasets
 
 </v-clicks>
 
@@ -209,37 +308,98 @@ While OpenEHR is designed to handle a wide range of clinical data, some types of
   + Video recordings of procedures
   + Audio files from dictations
   + Scanned documents
-* **Non-clinical operational data**:
-  + Hospital bed availability
-  + Inventory management
-  + Equipment maintenance logs
+* **Raw imaging data**:
+  + DICOM files
+  + Large medical image datasets
 
 </v-clicks>
 
+<!--
+* Demographische Daten!!
+* Administrative Daten (z. B. Abrechnungsinformationen, Personalplanung)
+* Authentifizierung und Zugriffskontrolle
+* Rohe Bilddaten (z. B. DICOM-Dateien)
+* Grosse Binärdateien (z. B. Videos von Operationen)
+* Nicht-klinische operative Daten (z. B. Krankenhausbettenverfügbarkeit)
+-->
+
+---
+layout: two-cols-header
 ---
 
-# Integration with Non-OpenEHR Systems 🤝
+# OpenEHR Integration Methods
 
-While OpenEHR focuses on clinical data, it can reference external resources:
+::left::
+
+01. **External References**
+   - Uses unique identifiers in EHR records
+   - Points to specific data in other systems (e.g., PACS, Lab, Admin)
+   - Maintains links without duplicating data
+
+02. **Standard Protocols (HL7 & FHIR)**
+   - Supports widely used healthcare data exchange standards
+   - Enables communication with various healthcare IT systems
+   - Facilitates interoperability across different providers
+
+This dual approach allows OpenEHR to:
+* Maintain a comprehensive view of patient data
+* Avoid unnecessary data duplication
+* Integrate smoothly with existing IT infrastructure
+* Facilitate efficient data exchange
+
+::right::
 
 ```mermaid
-graph LR
-    A[OpenEHR EHR] --> B[Clinical Data]
-    A -.-> C[External References]
-    C --> D[PACS for Imaging]
-    C --> E[Administrative System]
-    C --> F[Financial System]
+graph TB
+    subgraph "OpenEHR Integration"
+        subgraph "External References"
+            OpenEHR[OpenEHR Record]
+            PACS[PACS System]
+            LabSys[Laboratory System]
+            AdminSys[Administrative System]
+            OpenEHR -.->|ID: PAC123| PACS
+            OpenEHR -.->|ID: LAB456| LabSys
+            OpenEHR -.->|ID: ADM789| AdminSys
+        end
+        subgraph "Standard Protocols"
+            OpenEHR2[OpenEHR System]
+            HL7[HL7]
+            FHIR[FHIR]
+            HIS[Hospital Information System]
+            EHR[Electronic Health Record]
+            PharSys[Pharmacy System]
+            OpenEHR2 <--> HL7
+            OpenEHR2 <--> FHIR
+            HL7 <--> HIS
+            HL7 <--> EHR
+            FHIR <--> PharSys
+            FHIR <--> EHR
+        end
+    end
+
+    classDef openehr fill:#3498db,stroke:#333,stroke-width:2px;
+    classDef external fill:#e74c3c,stroke:#333,stroke-width:2px;
+    classDef protocol fill:#2ecc71,stroke:#333,stroke-width:2px;
+    classDef system fill:#f39c12,stroke:#333,stroke-width:2px;
+    class OpenEHR,OpenEHR2 openehr;
+    class PACS,LabSys,AdminSys,HIS,EHR,PharSys system;
+    class HL7,FHIR protocol;
 ```
 
-<v-click>
+<!--
+* OpenEHR nutzt zwei Hauptmethoden zur Integration:
 
-This approach allows for:
+01. Externe Referenzen:
+   - OpenEHR-Datensätze enthalten eindeutige Kennungen
+   - Diese verweisen auf Daten in externen Systemen
+   - Beispiele: PACS für Bildgebung, Laborsysteme, Verwaltungssysteme
+   - Vorteil: Vermeidung von Datenduplikation
 
-* Comprehensive patient records
-* Integration with existing hospital systems
-* Efficient data management across different domains
-
-</v-click>
+02. Standardprotokolle (HL7 und FHIR):
+   - Ermöglichen Datenaustausch mit verschiedenen Gesundheits-IT-Systemen
+   - HL7: Etablierter Standard für Nachrichtenaustausch
+   - FHIR: Moderner, web-basierter Standard für Interoperabilität
+-->
 
 ---
 layout: two-cols-header
@@ -279,6 +439,19 @@ Add Logo
 
 </v-click>
 
+<!--
+Wir arbeiten mit:
+
+* Better:
+  + Bietet Better Platform
+  + Kommerzielles Produkt mit umfassender Toolsuite
+  + Zentrale Better-Instanz für Tests verfügbar
+* EHRbase:
+  + Open-Source OpenEHR klinisches Datenrepository
+  + Implementiert neueste OpenEHR-Spezifikationen
+  + EHRbase-Einrichtungsanleitung in unserem Confluence verfügbar
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -304,7 +477,20 @@ layout: two-cols-header
 * Suitable for research and custom implementations
 * Vendors such as VitaGroup offer professional services and products based on EHRbase
 
-<!-- shit documentation -->
+<!--
+* Better:
+  + Kommerzielles Produkt
+  + Umfassende Toolsuite
+  + Professioneller Support
+  + Schnelle Entwicklungsmöglichkeiten
+* EHRbase:
+  + Open-Source
+  + Community-getriebene Entwicklung
+  + Hochgradig anpassbar
+  + Geeignet für Forschung und maßgeschneiderte Implementierungen
+
+NB. Dokumentation nicht besonders gut für beide.
+-->
 
 ---
 layout: statement
@@ -313,6 +499,15 @@ layout: statement
 # The Reference Model (RM) 🧱
 
 The foundation of OpenEHR architecture
+
+<!--
+Wir haben vorhin über den "two-level modelling approach gesprochen". Jetzt sind wir bei dem Level, der die technische Implementierung bestimmt.
+
+* Fundament der OpenEHR-Architektur
+* Definiert logische Strukturen von Gesundheitsakten
+* Stellt Konsistenz über alle OpenEHR-Systeme sicher
+* Bietet stabile Basis für Archetypes und Templates
+-->
 
 ---
 
@@ -330,6 +525,13 @@ The foundation of OpenEHR architecture
 * Support information (e.g., PARTICIPATION, AUDIT_DETAILS)
 
 </v-click>
+
+<!--
+* Schlüsselkomponenten:
+  + Datenstrukturen (z. B. COMPOSITION, SECTION, ENTRY)
+  + Datentypen (z. B. DV_TEXT, DV_QUANTITY)
+  + Unterstützende Informationen (z. B. PARTICIPATION, AUDIT_DETAILS)
+-->
 
 ---
 layout: two-cols-header
@@ -363,6 +565,15 @@ graph TD
     H --> I[ELEMENT]
 ```
 
+<!--
+* Hauptdatenstrukturen des Reference Model:
+  + COMPOSITION: Container für alle anderen Strukturen
+  + SECTION: Hilft bei der Organisation
+  + ENTRY: Repräsentiert klinische Inhalte (OBSERVATION, EVALUATION, INSTRUCTION, ACTION)
+  + CLUSTER und ELEMENT: Kleinste Bausteine
+* Hierarchische Struktur: COMPOSITION > SECTION > ENTRY > CLUSTER > ELEMENT
+-->
+
 ---
 
 # RM: Data Types 🧩
@@ -382,6 +593,19 @@ OpenEHR RM defines various data types to represent different kinds of clinical i
 * **DV_PARSABLE**: For parsable content (e.g., mathematical expressions)
 
 </v-clicks>
+
+<!--
+* Wichtige Datentypen:
+  + DV_TEXT: Für Freitext
+  + DV_CODED_TEXT: Für kodierte Begriffe (Terminologien)
+  + DV_QUANTITY: Für Messungen mit Einheiten
+  + DV_COUNT: Für zählbare Elemente
+  + DV_DATETIME: Für Datum und Uhrzeit
+  + DV_BOOLEAN: Für Ja/Nein-Werte
+  + DV_IDENTIFIER: Für Identifikatoren
+  + DV_MULTIMEDIA: Für Bilder, Audio, etc.
+* Jeder Datentyp für spezifische klinische Informationsarten optimiert
+-->
 
 ---
 
@@ -428,6 +652,14 @@ OpenEHR RM defines various data types to represent different kinds of clinical i
 
 </ScrollableCode>
 
+<!--
+* Struktur eines Blutdruckwerts im Reference Model:
+  + OBSERVATION > HISTORY > POINT_EVENT > ITEM_LIST > ELEMENT
+* Systolisch und diastolisch als separate ELEMENT-Einträge
+* Werte als DV_QUANTITY mit Grösse und Einheit
+* Detaillierte Struktur ermöglicht präzise und kontextreiche Datenspeicherung
+-->
+
 ---
 layout: statement
 ---
@@ -435,6 +667,16 @@ layout: statement
 # Archetypes 🧬
 
 Reusable clinical concept definitions
+
+<!--
+Jetzt kommen wir zum zweiten Level vom two-level approach:
+
+* Archetypes: Wiederverwendbare Definitionen klinischer Konzepte
+* In Archetype Definition Language (ADL) geschrieben
+* Constraint-basierter Ansatz zur Definition klinischer Inhalte
+* Von Domänenexperten entwickelt und überprüft
+* Beispiele: Blutdruck, Körpertemperatur, Medikamentenverordnung
+-->
 
 ---
 
@@ -454,6 +696,14 @@ Reusable clinical concept definitions
 * Laboratory Result
 
 </v-click>
+
+<!--
+* Formale Definitionen klinischer Konzepte
+* Archetype Definition Language (ADL): Spezielle Sprache für Archetypes
+* Constraint-basierter Ansatz: Definiert erlaubte und nicht erlaubte Werte/Strukturen
+* Entwickelt von klinischen Experten, nicht von Entwicklern
+* Archetypes definieren WAS gespeichert wird, nicht WIE es technisch umgesetzt wird
+-->
 
 ---
 
@@ -567,6 +817,19 @@ ontology
 
 </ScrollableCode>
 
+<!--
+* Hauptabschnitte eines Archetypes:
+  01. Header: Metadaten (Version, ID)
+  02. Concept: Definition des klinischen Konzepts
+  03. Language: Sprachinformationen
+  04. Description: Zweck, Verwendung, Missbrauch
+  05. Definition: Struktur und Einschränkungen
+  06. Ontology: Termdefinitionen und Terminologie-Bindungen
+* Komplexe Struktur, aber Tools unterstützen bei Erstellung und Verwaltung
+
+NB. Nur der Vollständigkeitshalber
+-->
+
 ---
 
 # Key Components of an Archetype 🗝️
@@ -582,11 +845,17 @@ ontology
 
 </v-clicks>
 
+<!--
+Nur der Vollständigkeitshalber
+-->
+
 ---
 
 # Archetype Modeling Tools 🛠️
 
-There are several tools available for creating and managing archetypes:
+There are several tools available for creating and managing archetypes/templates:
+
+* **ADL Designer**: Another web-based tool for creating and editing archetypes and templates - [ADL Designer](https://tools.openehr.org/designer/)
 
 * **Archetype Editor**: A standalone Java application for creating and editing archetypes - [Download Archetype Editor](https://www.openehr.org/downloads/archetypeeditor/home)
 
@@ -596,7 +865,14 @@ There are several tools available for creating and managing archetypes:
 
 * **Archetype Designer**: A web-based tool for creating and editing archetypes and templates - [Better Archetype Designer](https://tools.better.care/archetype-designer/)
 
-* **ADL Designer**: Another web-based tool for creating and editing archetypes and templates - [ADL Designer](https://tools.openehr.org/designer/)
+<!--
+* ADL Designer: Web-basiertes Tool für Archetypes und Templates, von OpenEHR selber
+* Archetype Editor: Standalone Java-Anwendung für Erstellung/Bearbeitung
+* Template Designer: Für Template-Erstellung basierend auf Archetypes
+* Clinical Knowledge Manager (CKM): Web-basierte Plattform für kollaborative Entwicklung
+* Archetype Designer: Web-basiertes Tool von Better
+* Tools erleichtern die Arbeit mit Archetypes erheblich
+-->
 
 ---
 layout: center
@@ -613,6 +889,17 @@ layout: statement
 # Templates 📄
 
 Combining archetypes for specific use cases
+
+<!--
+Lets take a 5min break!
+
+* Templates: Kombinieren und schränken Archetypes für spezifische Anwendungsfälle ein
+* Definieren Struktur von Eingabeformularen oder Dokumenten
+* Erlauben lokale Anpassungen bei Beibehaltung der Interoperabilität
+* Beispiele: Diabetes-Konsultation, APGAR-Score, Vitalzeichendiagramm
+
+Ab hier wird es wichtig für uns!
+-->
 
 ---
 
@@ -632,6 +919,14 @@ Combining archetypes for specific use cases
 
 </v-click>
 
+<!--
+* Templates: Brücke zwischen allgemeinen Archetypes und spezifischen Anwendungsanforderungen
+* Definieren Struktur von Eingabeformularen oder Dokumenten
+* Kombinieren mehrere Archetypes für einen spezifischen klinischen Prozess
+* Ermöglichen lokale Anpassungen bei Beibehaltung der Interoperabilität
+* Flexibel, aber folgen den Regeln der zugrundeliegenden Archetypes
+-->
+
 ---
 
 # Template Structure 🏗️
@@ -646,6 +941,14 @@ graph TD
     C --> G[Constraint 3]
     D --> H[Constraint 4]
 ```
+
+<!--
+* Templates kombinieren mehrere Archetypes
+* Können zusätzliche Einschränkungen hinzufügen
+* Hierarchische Struktur: Template > Archetypes > Elemente
+* Ermöglichen Anpassung an spezifische Anforderungen
+* Balance zwischen Spezifität und Allgemeingültigkeit wichtig
+-->
 
 ---
 
@@ -4439,6 +4742,10 @@ graph TD
 
 </ScrollableCode>
 
+<!--
+* Beispiel eines DOSS Templates in XML-Format
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -4464,6 +4771,14 @@ layout: two-cols-header
 
 </v-click>
 
+<!--
+* Anpassung für spezifische Anwendungsfälle
+* Verbesserte Effizienz bei der Dateneingabe
+* Konsistente Datenerfassung in der Organisation
+* Einfachere Integration in bestehende Arbeitsabläufe
+* Herausforderungen: Balance zwischen Flexibilität und Standardisierung
+-->
+
 ---
 layout: statement
 ---
@@ -4471,6 +4786,10 @@ layout: statement
 # Compositions
 
 The clinical documents of OpenEHR
+
+<!--
+-> next slide
+-->
 
 ---
 
@@ -4490,6 +4809,15 @@ The clinical documents of OpenEHR
 * Medication Prescription
 
 </v-click>
+
+<!--
+* Compositions: Oberste Strukturen in OpenEHR
+* Repräsentieren ein klinisches Dokument oder eine Begegnung
+* Enthalten nach Templates strukturierte Daten
+* Versioniert und auditiert für Nachvollziehbarkeit / änderungsverfolgung
+* Versionierung: Jede Änderung erzeugt neue Version
+* Beispiele: Patientenbesuchsbericht, Entlassungsbericht, Medikamentenverordnung, Röntgenbefund
+-->
 
 ---
 
@@ -4512,6 +4840,16 @@ graph TD
     J --> N[Element 3]
     K --> O[Element 4]
 ```
+
+<!--
+* Hierarchische Struktur einer Composition:
+  01. Kontext: Wer, wann, wo (Patient, Zeit, Ort)
+  02. Inhalt: Organisiert in Sections
+  03. Sections: Enthalten Entries (klinische Daten)
+  04. Entries: Verschiedene Typen (OBSERVATION, EVALUATION, INSTRUCTION, ACTION)
+  05. Elemente: Kleinste Informationseinheiten
+* Ermöglicht detaillierte und kontextreiche Datenspeicherung
+-->
 
 ---
 
@@ -4651,20 +4989,14 @@ graph TD
 
 </ScrollableCode>
 
----
-
-# Key Aspects of Compositions
-
-<v-clicks>
-
-01. **Metadata**: Information about the composition itself (e.g., archetype used, language, territory)
-02. **Context**: Details about when and where the clinical event occurred
-03. **Content**: The actual clinical data, structured according to archetypes and templates
-04. **Versioning**: Each change creates a new version, maintaining a complete history
-05. **Flexibility**: Can contain various types of entries (OBSERVATION, EVALUATION, INSTRUCTION, ACTION)
-06. **Integrity**: Signed and sealed to ensure data integrity and non-repudiation
-
-</v-clicks>
+<!--
+* Beispiel einer Patient Visit Composition:
+  + Metadaten: Sprache, Gebiet, Kategorie
+  + Kontext: Zeit und Ort des Besuchs
+  + Inhalt: Klinische Daten (z. B. Blutdruckwert)
+* JSON-Struktur: Hierarchisch und detailliert
+* Ermöglicht präzise Abfragen und Analysen
+-->
 
 ---
 layout: statement
@@ -4672,7 +5004,18 @@ layout: statement
 
 # Putting It All Together
 
-The Building Blocks of OpenEHR
+The Building Blocks of OpenEHR - summary
+
+<!--
+Kurze Pause oder weitermachen?
+
+* OpenEHR-Komponenten arbeiten zusammen wie ein Orchester:
+  + Reference Model: Grundregeln (wie Musiktheorie)
+  + Archetypes: Standardisierte, wiederverwendbare Konzepte (wie Instrumente)
+  + Templates: Bestimmen Zusammenspiel der Archetypes (wie Partituren)
+  + Compositions: Endergebnis (wie fertige Musikstücke)
+* Jede Komponente spielt eine wichtige Rolle für das Gesamtsystem
+-->
 
 ---
 layout: two-cols-header
@@ -4702,6 +5045,15 @@ graph TD
 
 </v-click>
 
+<!--
+* Hierarchie der OpenEHR-Architektur:
+  01. Reference Model: Basis, definiert grundlegende Strukturen
+  02. Archetypes: Bauen auf RM auf, definieren klinische Konzepte
+  03. Templates: Kombinieren und schränken Archetypes ein
+  04. Compositions: Verwenden Templates zur Strukturierung von Patientendaten
+* Vom Allgemeinen (RM) zum Spezifischen (Compositions)
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -4724,6 +5076,21 @@ layout: two-cols-header
 02. Data is validated against archetypes
 03. Compositions are created and stored
 04. Data conforms to Reference Model
+
+<!--
+Wichtig zu verstehen:
+
+* Design-Zeit:
+  01. Reference Model wird entworfen (nicht von uns)
+  02. Archetypes werden basierend auf RM erstellt (teilweise von uns)
+  03. Templates werden von uns mit Archetypes entworfen
+* Laufzeit:
+  01. Templates leiten Dateneingabe
+  02. Daten werden gegen Archetypes validiert
+  03. Compositions werden erstellt und gespeichert
+  04. Alle Daten konform zum Reference Model
+-->
+
 ---
 
 # Benefits of This Architecture
@@ -4738,6 +5105,14 @@ layout: two-cols-header
 
 </v-clicks>
 
+<!--
+* Trennung der Belange: Klinisches Wissen getrennt von Software-Implementierung
+* Flexibilität: Neue klinische Konzepte ohne Softwareänderungen
+* Interoperabilität: Standardisierte RM und Archetypes für systemübergreifendes Verständnis
+* Zukunftssicherheit: Daten bleiben gültig trotz Weiterentwicklung des klinischen Wissens
+* Abfragemöglichkeiten: Standardisierte Strukturen erlauben mächtige Queries
+-->
+
 ---
 layout: statement
 ---
@@ -4745,6 +5120,14 @@ layout: statement
 # Operational Templates
 
 Bridging Design and Runtime, but not really for us
+
+<!--
+* Operational Templates: Computerlesbare Form von OpenEHR-Templates
+* Verwendet von EHR-Systemen zur Datenvalidierung und -verarbeitung
+* Generiert aus Design-Zeit-Templates
+* Enthalten alle notwendigen Informationen für Laufzeitoperationen
+* "Kompilierte" Version der Templates, bereit für den Einsatz
+-->
 
 ---
 
@@ -4764,6 +5147,14 @@ Bridging Design and Runtime, but not really for us
 
 </v-click>
 
+<!--
+* Vollständig expandierte Struktur: Alle Details explizit definiert
+* Alle Constraints aufgelöst: Keine Unklarheiten
+* Bereit für direkte Verwendung durch Software
+* Enthält alle Informationen aus Archetypes und Templates
+* Optimiert für maschinelle Verarbeitung, nicht für menschliche Lesbarkeit
+-->
+
 ---
 
 # Operational Template Structure
@@ -4781,6 +5172,14 @@ graph TD
     D --> J[Term Definitions]
     D --> K[Value Sets]
 ```
+
+<!--
+* Hauptkomponenten eines Operational Templates:
+  01. Metadaten: Template-ID, Zweck, etc.
+  02. Definition: Detaillierte Struktur und Constraints
+  03. Terminologie: Termdefinitionen und Wertesets
+* Komplexe Struktur, aber ermöglicht präzise Datenvalidierung und -verarbeitung
+-->
 
 ---
 
@@ -8099,6 +8498,14 @@ graph TD
 
 </ScrollableCode>
 
+<!--
+* XML-Struktur eines Operational Templates
+* Enthält detaillierte Definitionen und Einschränkungen
+* Jedes Detail explizit festgelegt für präzise Validierung
+* In der Praxis: Generiert durch Tools, nicht manuell erstellt
+* Verwendet von EHR-Systemen zur Laufzeit
+-->
+
 ---
 
 # Operational Templates in Practice
@@ -8115,13 +8522,31 @@ graph TD
 
 </v-clicks>
 
+<!--
+* Verwendung in EHR-Systemen:
+  + Generierung von Benutzeroberflächen
+  + Validierung eingehender Daten
+  + Leitung von Datenspeicherung und -abruf
+* Ermöglicht konsistente Implementierung über verschiedene Systeme
+* Unterstützt semantische Interoperabilität
+* Ermöglicht Versionierung von Templates
+-->
+
 ---
 layout: statement
 ---
 
-# Web Templates
+# Web Templates (for us!)
 
 Simplifying OpenEHR for Web Development
+
+<!--
+* Web Templates: JSON-Darstellung von Operational Templates
+* Designed für einfache Verwendung in Webanwendungen
+* Vereinfachen Frontend-Entwicklung für OpenEHR-basierte Systeme
+* Aktuell im Einsatz im K6 Scores Projekt
+* Brücke zwischen OpenEHR-Backend und modernem Web-Frontend
+-->
 
 ---
 
@@ -8140,6 +8565,14 @@ Simplifying OpenEHR for Web Development
 * **Note: This is the work currently being undertaken in the K6 Scores project.**
 
 </v-click>
+
+<!--
+* JSON-Format: Leicht zu verarbeiten in JavaScript
+* Kompakter als XML Operational Templates
+* Direkt verwendbar zur Generierung dynamischer Formulare
+* Enthalten alle notwendigen Informationen für UI-Erstellung
+* Erleichtern Integration von OpenEHR in Webanwendungen
+-->
 
 ---
 
@@ -13758,6 +14191,15 @@ Simplifying OpenEHR for Web Development
 
 </ScrollableCode>
 
+<!--
+* JSON-Struktur eines Web Templates:
+  + Metadaten: template ID, Version, Sprache
+  + Baumstruktur repräsentiert Hierarchie der Datenelemente
+  + Jedes Element hat Eigenschaften wie ID, Name, Typ, Einschränkungen
+  + Unterstützt Mehrsprachigkeit
+* Ermöglicht einfache dynamische Generierung von UI-Elementen
+-->
+
 ---
 
 # Using Web Templates in Frontend Development
@@ -13827,6 +14269,15 @@ export default VitalSignsForm;
 
 </ScrollableCode>
 
+<!--
+* Beispiel-React-Komponente zur Verwendung von Web Templates:
+  + Generiert dynamisch ein Formular basierend auf Template-Struktur
+  + Behandelt verschiedene Feldtypen (z. B. Zahlen, Text) unterschiedlich
+  + Template-Struktur bestimmt direkt Formularstruktur
+  + Zeigt grundlegende Prinzipien, erweiterbar für komplexere Anwendungen
+* Demonstriert Integration von OpenEHR in moderne Web-Entwicklung
+-->
+
 ---
 
 # Benefits of Web Templates for Web Application Development 🌐
@@ -13842,7 +14293,19 @@ export default VitalSignsForm;
 
 </v-clicks>
 
-<!-- "Easily" - requires certain standards and consistency during the design phase of the templates -->
+<!--
+* Hauptvorteile von Web Templates:
+  01. Dynamische Formularerstellung: Automatische UI-Generierung
+  02. Mehrsprachige Unterstützung: Eingebaute Lokalisierung
+  03. Validierung: Direkt aus Template-Struktur ableitbar
+  04. Flexibilität: UI passt sich automatisch Template-Änderungen an
+  05. Konsistenz: Garantierte Übereinstimmung zwischen UI und OpenEHR-Datenmodell
+  06. Reduzierte Entwicklungszeit: Automatisierung repetitiver UI-Aspekte
+* Erleichtert signifikant die Entwicklung OpenEHR-konformer Webanwendungen
+
+"Easily" - requires certain standards and consistency during the design phase of the templates
+-->
+
 ---
 layout: statement
 ---
@@ -13850,6 +14313,10 @@ layout: statement
 # Reality check 🤯
 
 This approach in the "real world"
+
+<!--
+Soviel zur grauen Theorie, wie sieht es aber in der Wirklichkeit aus. Machen wir eine kurze Exkursion
+-->
 
 ---
 
@@ -13880,21 +14347,21 @@ Dynamic form generation from WebTemplates only works to a degree, it doesn't tel
 <ScrollableCode style="height: 230px">
 
 ```typescript {15, 53-54}
-import jp from 'jsonpath';
+import jp from 'jsonpath'; 
 import {
-  AnswerItem,
-  OpenEHRTemplate,
-  ScoreAnswer,
-  ScoreForm,
-  ScoreQuestion,
-  TemplateConfig,
-  TreeNode,
-} from '../types';
+  AnswerItem, 
+  OpenEHRTemplate, 
+  ScoreAnswer, 
+  ScoreForm, 
+  ScoreQuestion, 
+  TemplateConfig, 
+  TreeNode, 
+} from '../types'; 
 export function parseOpenEHRTemplate(
-  template: OpenEHRTemplate,
+  template: OpenEHRTemplate, 
   config: TemplateConfig
 ): ScoreForm {
-  const content = jp.query(template, config.contentPath)[0] as TreeNode;
+  const content = jp.query(template, config.contentPath)[0] as TreeNode; 
 
   if (!content) {
     throw new Error(`Could not find content at path: ${config.contentPath}`);
@@ -13932,8 +14399,8 @@ export function parseOpenEHRTemplate(
       };
     });
 
-  const scoreElement = jp.query(content, config.scorePath)[0] as TreeNode;
-  const commentElement = jp.query(content, config.commentPath)[0] as TreeNode;
+  const scoreElement = jp.query(content, config.scorePath)[0] as TreeNode; 
+  const commentElement = jp.query(content, config.commentPath)[0] as TreeNode; 
 
   return {
     id: template.templateId,
@@ -13946,7 +14413,7 @@ export function parseOpenEHRTemplate(
     comment: commentElement
       ? { id: commentElement.id, name: commentElement.name, answer: null }
       : { id: '', name: '', answer: null },
-  };
+  }; 
 }
 
 ```
@@ -13960,6 +14427,20 @@ layout: statement
 # Flat Format 🥞 vs. Non-Flat Format 🌳
 
 Balancing Simplicity and Richness in OpenEHR Data
+
+<!--
+- Flat Format:
+  - Vereinfachte, denormalisierte Darstellung
+  - Schlüssel-Wert-Paare
+  - Einfacher für Dateneingabe und Abfragen
+  - Verliert einige Kontext- und Beziehungsinformationen
+- Non-Flat Format:
+  - Volle, hierarchische OpenEHR-Struktur
+  - Bewahrt alle Kontexte und Beziehungen
+  - Komplexer in der Handhabung
+  - Behält alle Metadaten und semantische Bedeutung
+- Wahl abhängig vom Anwendungsfall und Anforderungen
+-->
 
 ---
 layout: two-cols-header
@@ -14099,6 +14580,18 @@ layout: two-cols-header
 
 </ScrollableCode>
 
+<!--
+* Flat Format Beispiel:
+  + Einfache Liste von Schlüssel-Wert-Paaren
+  + Pfade repräsentieren Hierarchie
+  + Leicht zu lesen und zu verarbeiten
+* Non-Flat Format Beispiel:
+  + Zeigt volle hierarchische Struktur
+  + Mehr Details, aber auch komplexer
+  + Behält alle Zwischenebenen und Beziehungen
+* Verdeutlicht Unterschiede in Komplexität und Detailgrad
+-->
+
 ---
 
 # Converting Between Flat and Non-Flat Formats
@@ -14138,6 +14631,10 @@ layout: statement
 
 Connecting Frontend to OpenEHR Backend
 
+<!--
+-> next slide
+-->
+
 ---
 
 # OpenEHR REST API Overview
@@ -14152,6 +14649,16 @@ Connecting Frontend to OpenEHR Backend
 
 </v-clicks>
 
+<!--
+* OpenEHR REST API:
+  + Standardisierter Weg zur Interaktion mit OpenEHR-Daten
+  + Unterstützt CRUD-Operationen auf EHR, Compositions, etc.
+  + Folgt RESTful Prinzipien
+  + Verwendet JSON für Datenaustausch
+  + Unterstützt sowohl flache als auch nicht-flache Formate
+* Ermöglicht nahtlose Integration von OpenEHR in moderne Webanwendungen
+-->
+
 ---
 
 # Common OpenEHR REST API Endpoints
@@ -14164,6 +14671,17 @@ Connecting Frontend to OpenEHR Backend
 * `/query`: Execute AQL queries
 
 </v-clicks>
+
+<!--
+* Wichtige OpenEHR REST API Endpunkte:
+  + /ehr: Verwaltung elektronischer Gesundheitsakten
+  + /ehr/{ehr_id}/composition: Verwaltung von Compositions für spezifische EHR
+  + /template: Abrufen und Verwalten von Templates
+  + /query: Ausführung von AQL-Abfragen
+* Jeder Endpunkt dient einem spezifischen Zweck in der OpenEHR-Datenverwaltung
+
+NB. Sowohl Better als auch EHRBase liefern eine OpenAPI Spezifikation
+-->
 
 ---
 
@@ -14195,6 +14713,16 @@ try {
     console.error('Failed to fetch composition:', error);
 }
 ```
+
+<!--
+* Beispiel zum Abrufen einer Composition:
+  + Verwendet fetch API für HTTP-Request
+  + Endpunkt kombiniert EHR-ID und Composition-ID
+  + Setzt Accept-Header auf JSON
+  + Prefer-Header fordert volle Repräsentation an
+  + Implementiert Fehlerbehandlung
+* Zeigt grundlegende Interaktion mit OpenEHR REST API
+-->
 
 ---
 
@@ -14237,6 +14765,15 @@ try {
 
 </ScrollableCode>
 
+<!--
+* Beispiel zum Erstellen einer neuen Composition:
+  + Verwendet POST-Methode
+  + Sendet Composition-Daten im Request-Body als JSON
+  + Setzt entsprechende Header (Content-Type, Accept, Prefer)
+  + Implementiert Fehlerbehandlung
+* Demonstriert Prozess der Datenerstellung in OpenEHR via REST API
+-->
+
 ---
 
 # Best Practices for OpenEHR REST API Interaction
@@ -14254,6 +14791,19 @@ try {
 
 </v-clicks>
 
+<!--
+* Best Practices für OpenEHR REST API Nutzung:
+  01. Verwendung passender Content-Types
+  02. Nutzung von Versionierung zur Konfliktvermeidung
+  03. Implementierung vernünftiger Fehlerbehandlung
+  04. Nutzung von Query-Parametern für Filterung, Sortierung, Paginierung
+  05. Implementierung von Retry-Logik für vorübergehende Fehler
+  06. Caching von Antworten wo sinnvoll
+  07. Nutzung von Bulk-Operationen wenn verfügbar
+  08. Validierung von Daten vor API-Sendung
+* Verbessert Effizienz und Robustheit der API-Interaktionen
+-->
+
 ---
 layout: statement
 ---
@@ -14261,6 +14811,12 @@ layout: statement
 # AQL (Archetype Query Language) 🔍
 
 Querying OpenEHR Data
+
+<!--
+Another break, questions?
+
+-> next slide
+-->
 
 ---
 
@@ -14275,6 +14831,16 @@ Querying OpenEHR Data
 * Can query both structured and unstructured data
 
 </v-clicks>
+
+<!--
+* Hauptmerkmale von AQL:
+  + Ähnlich wie SQL, aber für OpenEHR optimiert
+  + Pfadbasierter Ansatz zur Navigation durch Archetypes und Templates
+  + Unterstützt Aggregationen, Joins und komplexe Bedingungen
+  + Kann strukturierte und unstrukturierte Daten abfragen
+  + Ermöglicht präzise und flexible Abfragen über klinische Daten
+* Wichtig für effektive Datenextraktion und -analyse in OpenEHR-Systemen
+-->
 
 ---
 
@@ -14296,6 +14862,15 @@ Stored queries are queries that are stored in the EHR server and can be executed
 
 As opposed to stored queries, ad-hoc type queries does not have their definitions stored on the server, neither any associated identifier
 
+<!--
+* Verschiedene AQL-Abfragetypen:
+  01. Single EHR Queries: Abfragen innerhalb einer einzelnen Patientenakte
+  02. Population Queries: Abfragen über mehrere EHRs (z.B. für Forschung, Epidemiologie)
+  03. Stored Queries: Vordefinierte, gespeicherte Abfragen für häufige Verwendung
+  04. Ad-hoc Queries: Spontane, nicht gespeicherte Abfragen für einmalige Analysen
+* Jeder Typ hat spezifische Anwendungsfälle und Vorteile
+-->
+
 ---
 
 # AQL Basic Structure
@@ -14315,6 +14890,17 @@ LIMIT
 OFFSET
     <offset_clause>
 ```
+
+<!--
+* Grundstruktur einer AQL-Abfrage:
+  + SELECT: Wählt Daten aus (ähnlich wie in SQL)
+  + FROM: Gibt Datenquelle an (EHRs, Compositions)
+  + WHERE: Definiert Filterbedingungen
+  + ORDER BY: Sortiert Ergebnisse
+  + LIMIT/OFFSET: Für Paginierung
+* Ähnelt SQL-Struktur, aber mit OpenEHR-spezifischen Elementen
+* Ermöglicht präzise und flexible Datenabfragen
+-->
 
 ---
 
@@ -14336,6 +14922,16 @@ WHERE
 ORDER BY
     observationTime DESC
 ```
+
+<!--
+* Beispiel-AQL-Abfrage für Blutdruckmessungen:
+  + SELECT wählt relevante Datenfelder aus
+  + FROM definiert die Datenquelle (EHR, COMPOSITION, OBSERVATION)
+  + WHERE filtert nach Zeitraum
+  + ORDER BY sortiert nach Beobachtungszeit
+* Zeigt praktische Anwendung von AQL für klinische Datenabfrage
+* Demonstriert Navigation durch OpenEHR-Datenstrukturen
+-->
 
 ---
 
@@ -14392,6 +14988,16 @@ try {
 
 </ScrollableCode>
 
+<!--
+* Prozess zur Ausführung von AQL-Abfragen über REST API:
+  + POST-Request an '/query/aql' Endpunkt
+  + AQL-Abfrage im Request-Body
+  + Ergebnis als JSON zurückgegeben
+  + Fehlerbehandlung implementiert
+* Zeigt Integration von AQL in Webanwendungen
+* Ermöglicht komplexe Datenabfragen direkt aus Frontend-Anwendungen
+-->
+
 ---
 
 # AQL Best Practices
@@ -14413,68 +15019,17 @@ try {
 
 </v-clicks>
 
----
-
-# Parameterized AQL Query Example
-
-<ScrollableCode>
-
-```javascript
-const aqlQuery = `
-SELECT
-    e/ehr_id/value as ehrId,
-    c/context/start_time/value as observationTime,
-    bp/data[at0001]/events[at0006]/data[at0003]/items[at0004]/value/magnitude as systolic,
-    bp/data[at0001]/events[at0006]/data[at0003]/items[at0005]/value/magnitude as diastolic
-FROM
-    EHR e
-    CONTAINS COMPOSITION c
-    CONTAINS OBSERVATION bp[openEHR-EHR-OBSERVATION.blood_pressure.v2]
-WHERE
-    c/context/start_time/value >= $start_date
-    AND c/context/start_time/value < $end_date
-ORDER BY
-    observationTime DESC
-`;
-
-const queryParameters = {
-    start_date: '2023-01-01T00:00:00',
-    end_date: '2024-01-01T00:00:00',
-};
-
-async function executeParameterizedAQLQuery(aqlQuery, parameters) {
-    const response = await fetch('/query/aql', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-        },
-        body: JSON.stringify({
-            q: aqlQuery,
-            offset: 0,
-            fetch: 100,
-            query_parameters: parameters,
-        }),
-    });
-
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    return result;
-}
-
-// Usage
-try {
-    const result = await executeParameterizedAQLQuery(aqlQuery, queryParameters);
-    console.log('Query result:', result);
-} catch (error) {
-    console.error('Failed to execute AQL query:', error);
-}
-```
-
-</ScrollableCode>
+<!--
+* Best Practices für AQL-Nutzung:
+  01. Verwendung von Aliasen für bessere Lesbarkeit
+  02. Optimierung der Performance (spezifische Containment-Ausdrücke, Vermeidung unnötiger JOINs)
+  03. Parametrisierung von Abfragen für Flexibilität
+  04. Berücksichtigung von NULL-Werten
+  05. Vorsichtiger Einsatz von Aggregationen
+  06. Gründliches Testen von Abfragen
+  07. Versionierung und Dokumentation von AQL-Abfragen
+* Verbessert Effizienz und Wartbarkeit von AQL-Abfragen
+-->
 
 ---
 layout: statement
@@ -14484,6 +15039,10 @@ layout: statement
 
 Navigating the OpenEHR Landscape
 
+<!--
+So, was ich bisher begegnet bin
+-->
+
 ---
 
 # Best Practices for OpenEHR Development
@@ -14491,17 +15050,23 @@ Navigating the OpenEHR Landscape
 <v-clicks>
 
 01. **Understand the OpenEHR architecture**: Familiarize yourself with RM, archetypes, and templates
-02. **Use appropriate tools**: Leverage OpenEHR-specific development tools and libraries
-03. **Follow naming conventions**: Use consistent and meaningful names for archetypes and templates
-04. **Version control everything**: Manage archetypes, templates, and queries in version control
-05. **Implement proper error handling**: Handle OpenEHR-specific errors and edge cases
-06. **Optimize for performance**: Consider query optimization and caching strategies
-07. **Ensure data quality**: Implement validation at both client and server sides
-08. **Maintain backwards compatibility**: Consider the impact of changes on existing data
-09. **Document your work**: Provide clear documentation for archetypes, templates, and APIs
-10. **Engage with the community**: Participate in OpenEHR forums and contribute to shared resources
+02. **Implement proper error handling**: Handle OpenEHR-specific errors and edge cases
+03. **Optimize for performance**: Consider query optimization and caching strategies
+04. **Ensure data quality**: Implement validation at both client and server sides
+05. **Engage with the community**: Participate in OpenEHR forums and contribute to shared resources
 
 </v-clicks>
+
+<!--
+So, was ich bisher begegnet bin
+
+* Wichtige Best Practices:
+  01. Verständnis der OpenEHR-Architektur
+  02. Versionierung aller Komponenten
+  03. Performance-Optimierung
+  04. Sicherstellung der Datenqualität
+  05. Engagement in der OpenEHR-Community
+-->
 
 ---
 layout: two-cols-header
@@ -14511,29 +15076,66 @@ layout: two-cols-header
 
 ::left::
 
-## Versioning
+## Versioning of Compositions
 
-* Each update creates a new version
-* Use `If-Match` header for updates
-* Retrieve version history via API
+* Each update to a Composition creates a new version
+* Compositions are immutable once committed
+* Version control is managed by the EHR system
+* Full audit trail of changes is maintained
 
-## Concurrency
+## Concurrency Management
 
-* Optimistic locking
-* Version-aware updates
-* Conflict resolution strategies
+* OpenEHR uses optimistic locking for Compositions
+* Updates include the preceding version UID
+* EHR system checks for conflicts during commit
 
 ::right::
 
+## Versioning Mechanisms
+
+* `VERSION<COMPOSITION>` objects wrap Compositions
+* Each version has a unique identifier (uid)
+* Lifecycle states: complete, incomplete, deleted
+
 <v-click>
 
-## Best Practices
+## Best Practices for Developers
 
-* Always check and update based on latest version
-* Implement retry logic for conflict resolution
-* Use transactions for complex updates
+* Always fetch the latest version before updating
+* Include preceding version UID in update requests
+* Implement conflict resolution strategies in your application
+* Use PATH-based updates for granular changes
 
 </v-click>
+
+<!--
+Hier bin ich mir nicht sicher
+
+01. Versionierung in OpenEHR:
+   - OpenEHR versioniert hauptsächlich Kompositionen (Compositions), die klinische Dokumente oder Einträge darstellen.
+   - Kompositionen sind unveränderlich (immutable), sobald sie im EHR gespeichert sind.
+   - Jede Aktualisierung erzeugt eine neue Version und erhält so die vollständige Historie.
+   - Die Versionierung wird vom EHR-System verwaltet, nicht direkt von der Anwendung.
+
+02. Nebenläufigkeitsmanagement (Concurrency):
+   - OpenEHR verwendet optimistisches Locking zur Verwaltung gleichzeitiger Aktualisierungen.
+   - Bei Aktualisierungen wird die UID der Version angegeben, auf der die Änderungen basieren.
+   - Das EHR-System prüft während des Commit-Vorgangs auf Konflikte.
+
+03. Versionierungsmechanismen:
+   - Kompositionen sind in VERSION<COMPOSITION>-Objekten gekapselt.
+   - Jede Version hat eine eindeutige Kennung (UID).
+   - Versionen können verschiedene Lebenszykluszustände haben: vollständig, unvollständig oder gelöscht.
+
+04. Best Practices für Entwickler:
+   - Immer die neueste Version abrufen, bevor Aktualisierungen vorgenommen werden, um sicherzustellen, dass mit aktuellen Daten gearbeitet wird.
+   - Die UID der vorherigen Version in Aktualisierungsanfragen einbeziehen, um Konflikterkennung zu ermöglichen.
+   - Strategien in der Anwendung implementieren, um potenzielle Konflikte zu behandeln.
+   - PATH-basierte Updates für granulare Änderungen an spezifischen Teilen einer Komposition verwenden.
+
+05. Kernbotschaft:
+   - Das Versionierungs- und Nebenläufigkeitsmodell von OpenEHR gewährleistet Datenintegrität und erhält einen umfassenden Audit-Trail, während es effiziente Aktualisierungen und Konfliktlösungen ermöglicht.
+-->
 
 ---
 
@@ -14557,105 +15159,15 @@ layout: two-cols-header
 
 </v-clicks>
 
----
-
-# Handling OpenEHR-Specific Errors
-
-<ScrollableCode>
-
-```typescript
-class OpenEHRError extends Error {
-    constructor(message, code, details) {
-        super(message);
-        this.name = 'OpenEHRError';
-        this.code = code;
-        this.details = details;
-    }
-}
-
-function handleOpenEHRError(error) {
-    if (error instanceof OpenEHRError) {
-        console.error(`OpenEHR Error (${error.code}): ${error.message}`);
-        console.error('Details:', error.details);
-        // Handle specific error codes
-        switch (error.code) {
-            case 'INVALID_EHR':
-                // Handle invalid EHR error
-                break;
-            case 'ARCHETYPE_NOT_FOUND':
-                // Handle archetype not found error
-                break;
-                // Add more specific error handlers
-            default:
-                // Handle general OpenEHR errors
-                break;
-        }
-    } else {
-        console.error('Unexpected error:', error);
-        // Handle unexpected errors
-    }
-}
-
-// Usage
-try {
-    // OpenEHR operation
-} catch (error) {
-    handleOpenEHRError(error);
-}
-```
-
-</ScrollableCode>
-
----
-
-# Performance Optimization Strategies
-
-FIXME
-
-<v-clicks>
-
-01. **Query Optimization**:
-
-   - Use specific containment expressions in AQL
-   - Limit result sets when possible
-   - Use appropriate indexing on the backend
-
-02. **Caching**:
-
-   - Cache frequently used templates and archetypes
-   - Implement result caching for common queries
-   - Use ETags for efficient cache validation
-
-03. **Batch Operations**:
-
-   - Use bulk data operations when available
-   - Implement client-side batching for multiple operations
-
-04. **Asynchronous Processing**:
-
-   - Use asynchronous operations for time-consuming tasks
-   - Implement background jobs for data processing and aggregation
-
-05. **Data Denormalization**:
-
-   - Consider denormalizing data for frequently accessed information
-   - Balance between normalization and query performance
-
-06. **Efficient Data Serialization**:
-
-   - Use efficient data formats (e.g., Protocol Buffers, MessagePack)
-   - Implement partial response mechanisms to reduce payload size
-
-07. **Load Balancing**:
-
-   - Distribute requests across multiple servers
-   - Implement read replicas for read-heavy workloads
-
-08. **Monitoring and Profiling**:
-   - Implement performance monitoring
-   - Regularly profile and optimize slow queries
-
-</v-clicks>
+<!--
+01. OpenEHR-Daten als flache Strukturen behandeln
+  02. Klinische Konzepte direkt in Anwendungscode einbetten
+  03. Unzureichendes Testen mit realistischen klinischen Daten
+  04. Nichtverwendung von Standardterminologien
+  05. Unzureichende Behandlung OpenEHR-spezifischer Fehler
+  06. Ineffiziente AQL-Abfragen
+  07. Vernachlässigung der Frontend-Usability
+-->
 
 ---
 layout: statement
@@ -14664,6 +15176,14 @@ layout: statement
 # Hands-on Examples 💻
 
 Putting OpenEHR into Practice
+
+<!--
+- Einführung in praktische Beispiele:
+  - Ziel: OpenEHR in der Praxis demonstrieren
+  - Von einfachen zu komplexeren Anwendungsfällen
+  - Fokus auf reale Implementierungsszenarien
+- Bereitet auf konkrete Anwendung des gelernten Wissens vor
+-->
 
 ---
 
@@ -14754,6 +15274,17 @@ export default VitalSignsForm;
 ```
 
 </ScrollableCode>
+
+<!--
+- React-Komponente für Vitalzeichen-Formular mit OpenEHR Web Templates:
+  - Dynamische Formularerstellung basierend auf Template-Struktur
+  - Behandlung verschiedener Feldtypen (z.B. Zahlen, Text)
+  - Nutzung von useState für Formulardaten-Management
+  - Submission-Funktion zur Erstellung einer OpenEHR Composition
+  - Fehlerbehandlung implementiert
+- Zeigt praktische Integration von OpenEHR in moderne Webentwicklung
+- Demonstriert Flexibilität und Anpassungsfähigkeit von Web Templates
+-->
 
 ---
 
@@ -14857,6 +15388,16 @@ export default PatientVitalSigns;
 
 </ScrollableCode>
 
+<!--
+- React-Komponente zur Abfrage und Anzeige von Patientendaten:
+  - Verwendet AQL für komplexe Datenabfrage
+  - Implementiert Datenvisualisierung mit Recharts-Bibliothek
+  - Zeigt Blutdruck und Herzfrequenz über Zeit
+  - Fehlerbehandlung und Ladezustand berücksichtigt
+- Demonstriert praktische Anwendung von AQL in Frontend-Entwicklung
+- Zeigt, wie OpenEHR-Daten effektiv visualisiert werden können
+-->
+
 ---
 
 # Recap and Key Takeaways 🎓
@@ -14873,6 +15414,19 @@ export default PatientVitalSigns;
 08. Hands-on examples demonstrate practical application of OpenEHR in web development
 
 </v-clicks>
+
+<!--
+- Zusammenfassung der Hauptpunkte:
+  1. OpenEHR als flexibler, zukunftssicherer Ansatz für Gesundheitsdaten-Management
+  2. Bedeutung der Kernkonzepte: RM, Archetypes, Templates, Compositions
+  3. Web Templates zur Vereinfachung der Frontend-Entwicklung
+  4. AQL als mächtiges Werkzeug für komplexe Datenabfragen
+  5. REST APIs für standardisierte Interaktion mit OpenEHR-Systemen
+  6. Wichtigkeit von Best Practices und Vermeidung häufiger Fallstricke
+  7. Praktische Anwendung von OpenEHR in der Webentwicklung
+
+- Betonung der Relevanz für unsere zukünftigen Projekte
+-->
 
 ---
 layout: intro
@@ -14894,8 +15448,19 @@ https://gmickel.github.io/openehr-quest/
 * [OpenEHR Twitter](https://twitter.com/openehr)
 * [EHRBase GitHub](github.com/ehrbase/ehrbase)
 
+<!--
+- Wichtige Community-Ressourcen:
+  - OpenEHR.org: Zentrale Informationsquelle
+  - OpenEHR Discourse Forum: Für Fragen und Diskussionen
+  - OpenEHR GitHub: Für Quellcode und Beiträge zur Entwicklung
+  - OpenEHR Twitter: Für aktuelle Updates
+  - EHRBase GitHub: Für praktische Implementierungen
+- Ermutigung zur aktiven Teilnahme in der Community
+- Betonung des Wertes von Wissensaustausch und Zusammenarbeit
+-->
+
 ---
 
-# 🙏 Thank You!
+# 🙏 Thank You! 😅 😅
 
 Questions? Let's discuss!
