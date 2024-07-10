@@ -1,7 +1,3 @@
-Here's a comprehensive and engaging README for your GitHub repository:
-
----
-
 # OpenEHR Intro Session
 
 Welcome to the OpenEHR Intro Session repository! This project was created as part of my work for CISTEC (@cistec) and aims to provide a comprehensive guide for those leading our OpenEHR integration efforts. Below, you'll find a description of the contents, setup instructions, and other useful information.
@@ -132,7 +128,3 @@ Practical examples demonstrate the integration of OpenEHR in web applications, i
 ## Thank You! 🙏
 
 Feel free to reach out with any questions or discussions. Engage with the OpenEHR community to share knowledge and collaborate!
-
----
-
-Feel free to customize further as per your specific needs!
