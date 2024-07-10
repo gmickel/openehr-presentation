@@ -24,6 +24,7 @@ A comprehensive guide for those leading our OpenEHR integration efforts
 * Willkommen zur OpenEHR-Einführung
 * Zielgruppe: Senior Web-Entwickler in unserem Unternehmen, die für die Integration von OpenEHR zuständig sind
 * Ziel: Verständnis von OpenEHR und dessen Anwendung in unseren Projekten
+* Not included: modelling
 -->
 
 ---
@@ -168,6 +169,43 @@ graph TD
   01. Referenzmodell: Grundlegende Datentypen und Strukturen
   02. Archetypes: Definition klinischer Konzepte
   03. Templates: Kombination von Archetypes für spezifische Anwendungsfälle
+-->
+
+---
+layout: two-cols-header
+---
+
+# OpenEHR Architecture Overview
+
+::left::
+
+```mermaid
+graph TD
+    A[Reference Model] --> B[Archetypes]
+    B --> C[Templates]
+    C --> D[Compositions]
+    A -.-> D
+    B -.-> D
+```
+
+::right::
+
+<v-click>
+
+* **Reference Model**: Provides the foundational data types and structures
+* **Archetypes**: Define reusable clinical concepts based on the RM
+* **Templates**: Combine and constrain archetypes for specific use cases
+* **Compositions**: Use templates to structure actual patient data
+
+</v-click>
+
+<!--
+* Hierarchie der OpenEHR-Architektur:
+  01. Reference Model: Basis, definiert grundlegende Strukturen
+  02. Archetypes: Bauen auf RM auf, definieren klinische Konzepte
+  03. Templates: Kombinieren und schränken Archetypes ein
+  04. Compositions: Verwenden Templates zur Strukturierung von Patientendaten
+* Vom Allgemeinen (RM) zum Spezifischen (Compositions)
 -->
 
 ---
@@ -5015,43 +5053,6 @@ Kurze Pause oder weitermachen?
   + Templates: Bestimmen Zusammenspiel der Archetypes (wie Partituren)
   + Compositions: Endergebnis (wie fertige Musikstücke)
 * Jede Komponente spielt eine wichtige Rolle für das Gesamtsystem
--->
-
----
-layout: two-cols-header
----
-
-# OpenEHR Architecture Overview
-
-::left::
-
-```mermaid
-graph TD
-    A[Reference Model] --> B[Archetypes]
-    B --> C[Templates]
-    C --> D[Compositions]
-    A -.-> D
-    B -.-> D
-```
-
-::right::
-
-<v-click>
-
-* **Reference Model**: Provides the foundational data types and structures
-* **Archetypes**: Define reusable clinical concepts based on the RM
-* **Templates**: Combine and constrain archetypes for specific use cases
-* **Compositions**: Use templates to structure actual patient data
-
-</v-click>
-
-<!--
-* Hierarchie der OpenEHR-Architektur:
-  01. Reference Model: Basis, definiert grundlegende Strukturen
-  02. Archetypes: Bauen auf RM auf, definieren klinische Konzepte
-  03. Templates: Kombinieren und schränken Archetypes ein
-  04. Compositions: Verwenden Templates zur Strukturierung von Patientendaten
-* Vom Allgemeinen (RM) zum Spezifischen (Compositions)
 -->
 
 ---
@@ -15178,11 +15179,11 @@ layout: statement
 Putting OpenEHR into Practice
 
 <!--
-- Einführung in praktische Beispiele:
-  - Ziel: OpenEHR in der Praxis demonstrieren
-  - Von einfachen zu komplexeren Anwendungsfällen
-  - Fokus auf reale Implementierungsszenarien
-- Bereitet auf konkrete Anwendung des gelernten Wissens vor
+* Einführung in praktische Beispiele:
+  + Ziel: OpenEHR in der Praxis demonstrieren
+  + Von einfachen zu komplexeren Anwendungsfällen
+  + Fokus auf reale Implementierungsszenarien
+* Bereitet auf konkrete Anwendung des gelernten Wissens vor
 -->
 
 ---
@@ -15276,14 +15277,14 @@ export default VitalSignsForm;
 </ScrollableCode>
 
 <!--
-- React-Komponente für Vitalzeichen-Formular mit OpenEHR Web Templates:
-  - Dynamische Formularerstellung basierend auf Template-Struktur
-  - Behandlung verschiedener Feldtypen (z.B. Zahlen, Text)
-  - Nutzung von useState für Formulardaten-Management
-  - Submission-Funktion zur Erstellung einer OpenEHR Composition
-  - Fehlerbehandlung implementiert
-- Zeigt praktische Integration von OpenEHR in moderne Webentwicklung
-- Demonstriert Flexibilität und Anpassungsfähigkeit von Web Templates
+* React-Komponente für Vitalzeichen-Formular mit OpenEHR Web Templates:
+  + Dynamische Formularerstellung basierend auf Template-Struktur
+  + Behandlung verschiedener Feldtypen (z. B. Zahlen, Text)
+  + Nutzung von useState für Formulardaten-Management
+  + Submission-Funktion zur Erstellung einer OpenEHR Composition
+  + Fehlerbehandlung implementiert
+* Zeigt praktische Integration von OpenEHR in moderne Webentwicklung
+* Demonstriert Flexibilität und Anpassungsfähigkeit von Web Templates
 -->
 
 ---
@@ -15389,13 +15390,13 @@ export default PatientVitalSigns;
 </ScrollableCode>
 
 <!--
-- React-Komponente zur Abfrage und Anzeige von Patientendaten:
-  - Verwendet AQL für komplexe Datenabfrage
-  - Implementiert Datenvisualisierung mit Recharts-Bibliothek
-  - Zeigt Blutdruck und Herzfrequenz über Zeit
-  - Fehlerbehandlung und Ladezustand berücksichtigt
-- Demonstriert praktische Anwendung von AQL in Frontend-Entwicklung
-- Zeigt, wie OpenEHR-Daten effektiv visualisiert werden können
+* React-Komponente zur Abfrage und Anzeige von Patientendaten:
+  + Verwendet AQL für komplexe Datenabfrage
+  + Implementiert Datenvisualisierung mit Recharts-Bibliothek
+  + Zeigt Blutdruck und Herzfrequenz über Zeit
+  + Fehlerbehandlung und Ladezustand berücksichtigt
+* Demonstriert praktische Anwendung von AQL in Frontend-Entwicklung
+* Zeigt, wie OpenEHR-Daten effektiv visualisiert werden können
 -->
 
 ---
@@ -15416,16 +15417,16 @@ export default PatientVitalSigns;
 </v-clicks>
 
 <!--
-- Zusammenfassung der Hauptpunkte:
-  1. OpenEHR als flexibler, zukunftssicherer Ansatz für Gesundheitsdaten-Management
-  2. Bedeutung der Kernkonzepte: RM, Archetypes, Templates, Compositions
-  3. Web Templates zur Vereinfachung der Frontend-Entwicklung
-  4. AQL als mächtiges Werkzeug für komplexe Datenabfragen
-  5. REST APIs für standardisierte Interaktion mit OpenEHR-Systemen
-  6. Wichtigkeit von Best Practices und Vermeidung häufiger Fallstricke
-  7. Praktische Anwendung von OpenEHR in der Webentwicklung
+* Zusammenfassung der Hauptpunkte:
+  01. OpenEHR als flexibler, zukunftssicherer Ansatz für Gesundheitsdaten-Management
+  02. Bedeutung der Kernkonzepte: RM, Archetypes, Templates, Compositions
+  03. Web Templates zur Vereinfachung der Frontend-Entwicklung
+  04. AQL als mächtiges Werkzeug für komplexe Datenabfragen
+  05. REST APIs für standardisierte Interaktion mit OpenEHR-Systemen
+  06. Wichtigkeit von Best Practices und Vermeidung häufiger Fallstricke
+  07. Praktische Anwendung von OpenEHR in der Webentwicklung
 
-- Betonung der Relevanz für unsere zukünftigen Projekte
+* Betonung der Relevanz für unsere zukünftigen Projekte
 -->
 
 ---
@@ -15449,14 +15450,14 @@ https://gmickel.github.io/openehr-quest/
 * [EHRBase GitHub](github.com/ehrbase/ehrbase)
 
 <!--
-- Wichtige Community-Ressourcen:
-  - OpenEHR.org: Zentrale Informationsquelle
-  - OpenEHR Discourse Forum: Für Fragen und Diskussionen
-  - OpenEHR GitHub: Für Quellcode und Beiträge zur Entwicklung
-  - OpenEHR Twitter: Für aktuelle Updates
-  - EHRBase GitHub: Für praktische Implementierungen
-- Ermutigung zur aktiven Teilnahme in der Community
-- Betonung des Wertes von Wissensaustausch und Zusammenarbeit
+* Wichtige Community-Ressourcen:
+  + OpenEHR.org: Zentrale Informationsquelle
+  + OpenEHR Discourse Forum: Für Fragen und Diskussionen
+  + OpenEHR GitHub: Für Quellcode und Beiträge zur Entwicklung
+  + OpenEHR Twitter: Für aktuelle Updates
+  + EHRBase GitHub: Für praktische Implementierungen
+* Ermutigung zur aktiven Teilnahme in der Community
+* Betonung des Wertes von Wissensaustausch und Zusammenarbeit
 -->
 
 ---
